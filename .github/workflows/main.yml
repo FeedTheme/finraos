@@ -10,7 +10,7 @@ on:
 # 🪂 Allow only one concurrent deployment
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 # Set GITHUB_TOKEN scopes
 permissions: write-all
@@ -37,7 +37,7 @@ jobs:
  
       - name: 💎 Build on Linux
         if: runner.os == 'Linux'
-        uses: eq19/feed@v2
+        uses: eq19/feed@v3
         with:
           pre_build_commands: 'make build'
           token: ${{ secrets.JEKYLL_GITHUB_TOKEN }}
