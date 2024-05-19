@@ -7,7 +7,7 @@ on:
     types: [completed] #requested
     workflows: ["pages-build-deployment"]
 
-# 🪂 Allow only one concurrent deployment
+# 🪂 Allow concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -17,6 +17,7 @@ permissions: write-all
 
 # Sets global environtment variables
 env:
+  RUN: ${{ github.run_id }}
   USER: ${{ github.actor }}
   REPO: ${{ github.repository }}
   OWNER: ${{ github.repository_owner }}
@@ -32,7 +33,6 @@ jobs:
       - name: 📂 Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           token: ${{ secrets.JEKYLL_GITHUB_TOKEN }}
  
       - name: 💎 Build on Linux
